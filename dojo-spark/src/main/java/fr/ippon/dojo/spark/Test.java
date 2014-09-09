@@ -9,9 +9,7 @@ import org.apache.spark.api.java.function.Function2;
 import scala.Tuple2;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-
 
 public class Test {
 

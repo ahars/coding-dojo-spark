@@ -8,7 +8,7 @@ public class AnalyseParisTrees {
 
     public static void main(String[] args) {
 
-        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
 
         SparkConf conf = new SparkConf()
                 .setAppName("paris-arbresalignementparis2010")

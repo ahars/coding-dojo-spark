@@ -8,7 +8,7 @@ public class ConvertToFlatFile {
 
     public static void main(String[] args) {
 
-        final String PATH = "/Users/seigneurin/dev/coding-dojo-spark/";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
 
         SparkConf conf = new SparkConf()
                 .setAppName("paris-tonnagesdechets-toflatfile")
@@ -17,7 +17,7 @@ public class ConvertToFlatFile {
                 //.setJars(new String[]{PATH + "/dojo-spark/target/dojo-spark-0.0.1-SNAPSHOT.jar"});
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String filename = PATH + "/data/paris-tonnagesdechets/tonnages_des_dechets_bacs_jaunes.csv";
+        String filename = PATH + "\\data\\paris-tonnagesdechets\\tonnages_des_dechets_bacs_jaunes.csv";
         String[] headers = sc.textFile(filename)
                 .map(line -> line.split(";"))
                 .first();
@@ -26,7 +26,7 @@ public class ConvertToFlatFile {
                 .filter(t -> !t[0].equals("Tout Paris") && !t[0].equals("granularite"))
                 .flatMap(t -> flattenize(t, headers))
                 .map(t -> t[0] + ";" + t[1] + ";" + t[2])
-                .saveAsTextFile(PATH + "/data/paris-tonnagesdechets-flat");
+                .saveAsTextFile(PATH + "\\data\\paris-tonnagesdechets-flat");
     }
     private static Iterable<String[]> flattenize(String[] tokens, String[] headers) {
         ArrayList<String[]> res = new ArrayList<>();

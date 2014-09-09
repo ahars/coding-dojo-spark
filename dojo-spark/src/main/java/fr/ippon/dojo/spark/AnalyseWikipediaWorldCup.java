@@ -9,7 +9,7 @@ public class AnalyseWikipediaWorldCup {
 
     public static void main(String[] args) {
 
-        final String PATH = "/Users/seigneurin/dev/coding-dojo-spark/";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
 
         SparkConf conf = new SparkConf()
                 .setAppName("wikipedia-pagecounts worldcup")
@@ -18,7 +18,7 @@ public class AnalyseWikipediaWorldCup {
                 //.setJars(new String[]{PATH + "/dojo-spark/target/dojo-spark-0.0.1-SNAPSHOT.jar"});
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String worldcupPages = PATH + "/data/wikipedia-worldcup-pages/worldcup-pages.txt";
+        String worldcupPages = PATH + "\\data\\wikipedia-worldcup-pages\\worldcup-pages.txt";
         JavaPairRDD<String, String> worldcupPagesRDD = sc.textFile(worldcupPages, 10)
                 .map(line -> line.split("\t"))
                 .mapToPair(s -> new Tuple2<String, String>(s[0] + " " + s[3].toLowerCase(), s[1] + " - " + s[2]));
@@ -27,7 +27,7 @@ public class AnalyseWikipediaWorldCup {
         if (!true) {
             worldcupPagesRDD.foreach(s -> System.out.println(s._1));
         }
-        String worldcupViews = PATH + "/data/wikipedia-pagecounts-days/pagecounts-*";
+        String worldcupViews = PATH + "\\data\\wikipedia-pagecounts-days\\pagecounts-*";
         JavaPairRDD<String, Long> worldcupViewsRDD = sc.textFile(worldcupViews)
                 .map(line -> line.split(" "))
                 .mapToPair(s -> new Tuple2<String, Long>(s[0] + " " + s[1].toLowerCase(), Long.parseLong(s[2])))
@@ -43,10 +43,10 @@ public class AnalyseWikipediaWorldCup {
         worldcupPageViewsRDD
                 .mapToPair(x -> new Tuple2<Long, String>(x._2._1, x._2._2))
                 .sortByKey()
-                .saveAsTextFile(PATH + "/data/res-worldcup-pageviews-byviews");
+                .saveAsTextFile(PATH + "\\data\\res-worldcup-pageviews-byviews");
         worldcupPageViewsRDD
                 .mapToPair(x -> new Tuple2<String, Long>(x._2._2, x._2._1))
                 .sortByKey()
-                .saveAsTextFile(PATH + "/data/res-worldcup-pageviews-bycountry");
+                .saveAsTextFile(PATH + "\\data\\res-worldcup-pageviews-bycountry");
     }
 }
