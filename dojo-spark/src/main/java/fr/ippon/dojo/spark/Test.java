@@ -14,7 +14,9 @@ import java.util.List;
 public class Test {
 
     public static void main(String[] args) {
-        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark";
+
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\data\\paris-arbresalignementparis2010\\";
+        //final String PATH = "hdfs://10.10.200.119:9000/";
 
         /*************************** Initialisation de Spark ***************************/
         SparkConf conf = new SparkConf()
@@ -22,7 +24,7 @@ public class Test {
                 .setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String filename = PATH + "\\data\\paris-arbresalignementparis2010\\arbres.txt";
+        String filename = PATH + "\\arbres.txt";
         //String filename = PATH + "\\data\\paris-arbresalignementparis2010\\arbresalignementparis2010.csv";
         sc.textFile(filename);
 

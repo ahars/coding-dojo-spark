@@ -9,14 +9,15 @@ public class AnalyseTonnageDechets {
 
     public static void main(String[] args) {
 
-        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\data\\paris-tonnagesdechets\\";
+        //final String PATH = "hdfs://10.10.200.119:9000/";
 
         SparkConf conf = new SparkConf()
                 .setAppName("tonnages_dechets_bacs_jaunes2011")
                 .setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String filename = PATH + "\\data\\paris-tonnagesdechets\\tonnages_des_dechets_bacs_jaunes.csv";
+        String filename = PATH + "\\tonnages_des_dechets_bacs_jaunes.csv";
         System.out.println();
 
         String[] header = sc.textFile(filename)

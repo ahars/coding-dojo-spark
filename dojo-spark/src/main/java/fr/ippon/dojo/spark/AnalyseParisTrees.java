@@ -8,14 +8,15 @@ public class AnalyseParisTrees {
 
     public static void main(String[] args) {
 
-        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\data\\paris-arbresalignementparis2010\\";
+        //final String PATH = "hdfs://10.10.200.119:9000/";
 
         SparkConf conf = new SparkConf()
                 .setAppName("paris-arbresalignementparis2010")
                 .setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String filename = PATH + "\\data\\paris-arbresalignementparis2010\\arbresalignementparis2010.csv";
+        String filename = PATH + "\\arbresalignementparis2010.csv";
         System.out.println("nb arbres = " + sc.textFile(filename).count());
 
         sc.textFile(filename)

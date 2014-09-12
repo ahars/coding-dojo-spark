@@ -9,7 +9,8 @@ public class AnalyseWikipediaWorldCup {
 
     public static void main(String[] args) {
 
-        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\data\\wikipedia-worldcup-pages\\";
+        //final String PATH = "hdfs://10.10.200.119:9000/";
 
         SparkConf conf = new SparkConf()
                 .setAppName("wikipedia-pagecounts worldcup")
@@ -18,7 +19,7 @@ public class AnalyseWikipediaWorldCup {
                 //.setJars(new String[]{PATH + "/dojo-spark/target/dojo-spark-0.0.1-SNAPSHOT.jar"});
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String worldcupPages = PATH + "\\data\\wikipedia-worldcup-pages\\worldcup-pages.txt";
+        String worldcupPages = PATH + "\\worldcup-pages.txt";
         JavaPairRDD<String, String> worldcupPagesRDD = sc.textFile(worldcupPages, 10)
                 .map(line -> line.split("\t"))
                 .mapToPair(s -> new Tuple2<String, String>(s[0] + " " + s[3].toLowerCase(), s[1] + " - " + s[2]));

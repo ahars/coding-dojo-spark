@@ -8,7 +8,8 @@ public class ConvertToPivotFile {
 
     public static void main(String[] args) {
 
-        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\";
+        final String PATH = "C:\\Users\\IPPON_2\\coding-dojo-spark\\data\\paris-tonnagesdechets-flat\\";
+        //final String PATH = "hdfs://10.10.200.119:9000/";
 
         SparkConf conf = new SparkConf()
                 .setAppName("paris-tonnagesdechets-topivotfile")
@@ -17,7 +18,7 @@ public class ConvertToPivotFile {
                 //.setJars(new String[]{PATH + "/dojo-spark/target/dojo-spark-0.0.1-SNAPSHOT.jar"});
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        String filename = PATH + "\\data\\paris-tonnagesdechets-flat\\part-*";
+        String filename = PATH + "\\part-*";
         sc.textFile(filename)
                 .map(line -> line.split(";"))
                 .mapToPair(t -> new Tuple2<>(t[0], mapToPivotLine(t)))
