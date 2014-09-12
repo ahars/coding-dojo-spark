@@ -22,6 +22,8 @@ public class Test {
         SparkConf conf = new SparkConf()
                 .setAppName("test")
                 .setMaster("local");
+                //.setMaster("spark://10.10.200.119:7077")
+                //.setJars(new String[]{PATH + "/coding-dojo-spark/target/dojo-spark-0.0.1-SNAPSHOT.jar"});
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         String filename = PATH + "\\arbres.txt";
